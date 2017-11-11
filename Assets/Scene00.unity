@@ -153,10 +153,11 @@ MonoBehaviour:
   voxel: {fileID: 1947728258088086, guid: 523e6a8d1d490b64fafb413968ef733b, type: 2}
   ChunkSize: 16
   ChunkHeight: 20
-  Scale: 32
+  Scale: 64
   Layers: 3
   RateOfAmplitude: 0.5
   RateOfFrequency: 2
+  Seed: 0
 --- !u!4 &563962437
 Transform:
   m_ObjectHideFlags: 0

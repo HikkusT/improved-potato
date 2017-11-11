@@ -16,6 +16,8 @@ public class ChunkSettings {
 
     public float Lacunarity { get; private set; }
 
+    public Vector2i[] OffSet { get; private set; }
+
     public ChunkSettings(int _size, int _height, float _scale, int _layers, float _persistance, float _lacunarity)
     {
         Size = _size;
@@ -24,16 +26,11 @@ public class ChunkSettings {
         Layers = _layers;
         Persistance = _persistance;
         Lacunarity = _lacunarity;
-    }
 
-    public ChunkSettings (int _size, int _height, float _scale)
-    {
-        Size = _size;
-        Height = _height;
-        Scale = _scale;
-        Layers = 1;
-        Persistance = 1;
-        Lacunarity = 1;
+        System.Random prng = new System.Random(LevelManager.Instance.Seed);
+        OffSet = new Vector2i[_layers];
+        for (int i = 0; i < _layers; i++)
+            OffSet[i] = new Vector2i(prng.Next(-10000, 10000), prng.Next(-10000, 10000));
     }
 
 }

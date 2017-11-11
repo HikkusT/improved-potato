@@ -43,7 +43,7 @@ public class Chunk {
 
     private float[,] GenerateHeightMap()
     {
-        float[,] heights = NoiseGenerator.Perlin2D(Position, settings.Size, settings.Height, settings.Scale, settings.Layers, settings.Persistance, settings.Lacunarity);
+        float[,] heights = NoiseGenerator.Perlin2D(Position, settings.OffSet, settings.Size, settings.Height, settings.Scale, settings.Layers, settings.Persistance, settings.Lacunarity);
 
         return heights;
     }

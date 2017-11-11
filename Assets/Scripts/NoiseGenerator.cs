@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class NoiseGenerator {
 
-	public static float[,] Perlin2D(Vector2i start, int mapSize, int mapHeight, float scale, int layers, float persistance, float lacunarity)
+	public static float[,] Perlin2D(Vector2i start, Vector2i[] offSet, int mapSize, int mapHeight, float scale, int layers, float persistance, float lacunarity)
     {
         float[,] heights = new float[mapSize, mapSize];
 
@@ -16,20 +16,22 @@ public static class NoiseGenerator {
 
                 float height = 0;
                 float maxHeight = 0;
+                float minHeight = 0;
 
                 for (int i = 0; i < layers; i++)
                 {
-                    float xCoord = (start.X * mapSize + (float)x) / scale * frequency;
-                    float zCoord = (start.Z * mapSize + (float)z) / scale * frequency;
+                    float xCoord = (start.X * mapSize + (float)x) / scale * frequency + offSet[i].X;
+                    float zCoord = (start.Z * mapSize + (float)z) / scale * frequency + offSet[i].Z;
 
-                    height += ((Mathf.PerlinNoise(xCoord, zCoord))) * amplitude;
+                    height += ((Mathf.PerlinNoise(xCoord, zCoord)) * 2 - 1) * amplitude;
                     maxHeight += amplitude;
+                    minHeight -= amplitude;
 
                     amplitude *= persistance;
                     frequency *= lacunarity;
                 }
 
-                heights[x, z] = height / maxHeight;
+                heights[x, z] = (height - minHeight) / (maxHeight - minHeight);
 
                 heights[x, z] = (int)Mathf.Round(height * mapHeight);
             }
@@ -49,20 +51,22 @@ public static class NoiseGenerator {
 
                 float height = 0;
                 float maxHeight = 0;
+                float minHeight = 0;
 
                 for (int i = 0; i < layers; i++)
                 {
                     float xCoord = (start.X * mapSize + (float)x) / scale * frequency;
                     float zCoord = (start.Z * mapSize + (float)z) / scale * frequency;
 
-                    height += ((Mathf.PerlinNoise(xCoord, zCoord))) * amplitude;
+                    height += ((Mathf.PerlinNoise(xCoord, zCoord)) * 2 - 1) * amplitude;
                     maxHeight += amplitude;
+                    minHeight -= amplitude;
 
                     amplitude *= persistance;
                     frequency *= lacunarity;
                 }
 
-                heights[x, z] = height/maxHeight;
+                heights[x, z] = (height - minHeight)/(maxHeight - minHeight);
             }
 
         return heights;

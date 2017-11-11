@@ -7,6 +7,7 @@ public class MapDisplay : MonoBehaviour {
     public int MapSize = 100;
     public float Scale = 1;
     public int Layers = 3;
+    [Range(0,1)]
     public float RateOfAmplitude = 0.5f;
     public float RateOfFrequency = 2f;
     public bool AutoUpdate;
