@@ -15,11 +15,8 @@ public class ChunkManager{
     public void UpdateTerrain(Vector2i centerChunk, int radius)
     {
         List<Vector2i> currentChunks = GetChunksInRange(centerChunk, radius);
-
         List<Vector2i> loadedChunksPos = loadedChunks.Keys.ToList();
-
         List<Vector2i> chunksToDestroy = loadedChunksPos.Except(currentChunks).ToList();
-
         List<Vector2i> chunksToCreate = currentChunks.Except(loadedChunksPos).ToList();
 
         foreach (Vector2i chunk in chunksToCreate)
@@ -47,8 +44,6 @@ public class ChunkManager{
 
         return chunks;
     }
-
-
 
     private void CreateChunk(Vector2i chunkPos)
     {

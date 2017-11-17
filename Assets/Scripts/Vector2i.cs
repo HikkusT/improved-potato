@@ -20,7 +20,7 @@ public class Vector2i {
         Z = z;
     }
 
-    private Vector2 ToVector2 ()
+    public Vector2 ToVector2 ()
     {
         return new Vector2(X, Z);
     }

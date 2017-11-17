@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     public int RenderDistance;
-    public GameObject player;
+    public GameObject Player;
 
     private int chunkSize;
     private int chunkHeight;
@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour {
 	}
 	
 	void Update () {
-        currentPos = chunkManager.GetChunkAtPosition(player.transform.position);
+        currentPos = chunkManager.GetChunkAtPosition(Player.transform.position);
         if (!currentPos.Equals(prevPos))
         {
             prevPos = currentPos;

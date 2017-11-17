@@ -79,13 +79,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Chunk.cs" />
-    <Compile Include="Assets\Scripts\ChunkManager.cs" />
     <Compile Include="Assets\Scripts\ChunkSettings.cs" />
-    <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\LevelManager.cs" />
+    <Compile Include="Assets\Scripts\Enums\DrawMode.cs" />
+    <Compile Include="Assets\Scripts\ExtensionMethods.cs" />
+    <Compile Include="Assets\Scripts\Managers\ChunkManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\LevelManager.cs" />
     <Compile Include="Assets\Scripts\MapDisplay.cs" />
     <Compile Include="Assets\Scripts\NoiseGenerator.cs" />
     <Compile Include="Assets\Scripts\TerrainGenerator.cs" />
+    <Compile Include="Assets\Scripts\TextureGenerator.cs" />
     <Compile Include="Assets\Scripts\Vector2i.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

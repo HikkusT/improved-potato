@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RenderDistance: 3
-  player: {fileID: 2068870111}
+  Player: {fileID: 2068870111}
 --- !u!114 &563962436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,13 +182,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bb4bb1b448bbba4782547e1d4b31193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drawMode: 1
+  Seed: 0
+  Start: {x: 0, y: 0}
   MapSize: 100
-  Scale: 25.92
+  Scale: 64
   Layers: 3
   RateOfAmplitude: 0.5
   RateOfFrequency: 2
   AutoUpdate: 1
   textureRender: {fileID: 1122018924}
+  regions:
+  - Name: DeepWater
+    Height: 0.23
+    Color: {r: 0.19215687, g: 0.45882353, b: 0.5372549, a: 1}
+  - Name: Water
+    Height: 0.4
+    Color: {r: 0.13333334, g: 0.654902, b: 0.94117653, a: 1}
+  - Name: Sand
+    Height: 0.43
+    Color: {r: 0.8862745, g: 0.69411767, b: 0.23529412, a: 1}
+  - Name: NearSandGrass
+    Height: 0.44
+    Color: {r: 0.5294118, g: 0.827451, b: 0.4862745, a: 1}
+  - Name: Grass
+    Height: 0.53
+    Color: {r: 0.14901961, g: 0.6509804, b: 0.35686275, a: 1}
+  - Name: InLandGrass
+    Height: 0.54
+    Color: {r: 0, g: 0.39215687, b: 0.25882354, a: 1}
+  - Name: LowRock
+    Height: 0.65
+    Color: {r: 0.49411765, g: 0.31764707, b: 0.03529412, a: 1}
+  - Name: HighRock
+    Height: 0.75
+    Color: {r: 0.24264705, g: 0.15755588, b: 0.02141004, a: 1}
+  - Name: Snow
+    Height: 1
+    Color: {r: 0.9254902, g: 0.9411765, b: 0.94509804, a: 1}
 --- !u!1 &1122018923
 GameObject:
   m_ObjectHideFlags: 0
