@@ -1,16 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.Threading;
 
 public class Chunk {
 
     public Vector2i Position { get; private set; }
 
     private ChunkSettings settings;
-
-    //private NoiseGenerator noiseGenerator = new NoiseGenerator();
-
     private GameObject chunk = null;
+
+
 
     public Chunk (int _x, int _z, ChunkSettings _settings)
     {
@@ -26,13 +27,11 @@ public class Chunk {
         settings = _settings;
     }
 
+
+
     public void CreateTerrain()
     {
-        float[,] heightmap = GenerateHeightMap();
-
-        BuildTerrain(heightmap);
-
-        Combine();
+        RequestTerrainData(OnTerrainDataReceived);
     }
 
     public void DestroyTerrain()
@@ -90,5 +89,33 @@ public class Chunk {
         //chunk.GetComponent<MeshFilter>().mesh = new Mesh();
         //chunk.GetComponent<MeshFilter>().mesh.CombineMeshes(combine);
         //chunk.active = true;
+    }
+
+    private void RequestTerrainData(Action<float[,]> callback)
+    {
+        ThreadStart threadStart = delegate
+        {
+            TerrainDataCalculateThread(callback);
+        };
+
+        new Thread (threadStart).Start();
+    }
+
+    private void TerrainDataCalculateThread (Action<float[,]> callback)
+    {
+        float[,] heightmap = GenerateHeightMap();
+        TerrainThreadInfo threadInfo = new TerrainThreadInfo(callback, heightmap);
+
+        lock (ChunkManager.Instance.terrainThreadInfoQueue)
+        {
+            ChunkManager.Instance.terrainThreadInfoQueue.Enqueue(threadInfo);
+        }
+    }
+
+    private void OnTerrainDataReceived (float[,] heightmap)
+    {
+        BuildTerrain(heightmap);
+
+        Combine();
     }
 }

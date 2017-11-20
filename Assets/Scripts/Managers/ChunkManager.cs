@@ -2,13 +2,58 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
+using System.Threading;
 
-public class ChunkManager{
+public class ChunkManager : MonoBehaviour{
 
-    private ChunkSettings settings = new ChunkSettings(LevelManager.Instance.ChunkSize, LevelManager.Instance.ChunkHeight, LevelManager.Instance.Scale
-                                                       , LevelManager.Instance.Layers, LevelManager.Instance.RateOfAmplitude, LevelManager.Instance.RateOfFrequency);
+    public Queue<TerrainThreadInfo> terrainThreadInfoQueue = new Queue<TerrainThreadInfo>();
 
-    private Dictionary<Vector2i, Chunk> loadedChunks = new Dictionary<Vector2i, Chunk>();
+    private ChunkSettings settings;
+    private Dictionary<Vector2i, Chunk> loadedChunks;
+
+    private int renderDistance;
+    private Vector2i prevPos;
+    private Vector2i currentPos;
+
+    public static ChunkManager Instance = null;
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else if (Instance != this)
+            Destroy(gameObject);
+    }
+
+    private void Start()
+    {
+        settings = new ChunkSettings(LevelManager.Instance.ChunkSize, LevelManager.Instance.ChunkHeight, LevelManager.Instance.Scale
+                                     , LevelManager.Instance.Layers, LevelManager.Instance.RateOfAmplitude, LevelManager.Instance.RateOfFrequency);
+
+        loadedChunks = new Dictionary<Vector2i, Chunk>();
+
+
+        renderDistance = GetComponent<GameManager>().RenderDistance;
+        prevPos = new Vector2i(100000000, 100000000);
+    }
+
+    private void Update()
+    {
+        if (terrainThreadInfoQueue.Count > 0)
+            for (int i = 0; i < terrainThreadInfoQueue.Count; i++)
+            {
+                TerrainThreadInfo threadInfo = terrainThreadInfoQueue.Dequeue();
+                threadInfo.callback(threadInfo.calculatedInfo);
+            }
+
+        currentPos = GetChunkAtPosition(GameManager.PlayerPosition);
+        if (!currentPos.Equals(prevPos))
+        {
+            prevPos = currentPos;
+            UpdateTerrain(currentPos, renderDistance);
+        }
+    }
 
 
 
@@ -61,6 +106,19 @@ public class ChunkManager{
         Chunk chunk = loadedChunks[chunkPos];
         chunk.DestroyTerrain();
         loadedChunks.Remove(chunkPos);
+    }
+
+}
+
+public struct TerrainThreadInfo
+{
+    public readonly Action<float[,]> callback;
+    public readonly float[,] calculatedInfo;
+
+    public TerrainThreadInfo(Action<float[,]> callback, float[,] parameter)
+    {
+        this.callback = callback;
+        this.calculatedInfo = parameter;
     }
 
 }

@@ -82,6 +82,7 @@
     <Compile Include="Assets\Scripts\ChunkSettings.cs" />
     <Compile Include="Assets\Scripts\Enums\DrawMode.cs" />
     <Compile Include="Assets\Scripts\ExtensionMethods.cs" />
+    <Compile Include="Assets\Scripts\External\FlyCamera.cs" />
     <Compile Include="Assets\Scripts\Managers\ChunkManager.cs" />
     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
     <Compile Include="Assets\Scripts\Managers\LevelManager.cs" />
