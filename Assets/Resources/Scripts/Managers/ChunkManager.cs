@@ -92,8 +92,6 @@ public class ChunkManager : MonoBehaviour{
 
     private void CreateChunk(Vector2i chunkPos)
     {
-        //Debug.Log("Create");
-
         Chunk chunk = new Chunk(chunkPos.X, chunkPos.Z, settings);
         chunk.CreateTerrain();
         loadedChunks.Add(chunkPos, chunk);
@@ -101,8 +99,6 @@ public class ChunkManager : MonoBehaviour{
 
     private void DestroyChunk(Vector2i chunkPos)
     {
-        //Debug.Log("Destroy");
-
         Chunk chunk = loadedChunks[chunkPos];
         chunk.DestroyTerrain();
         loadedChunks.Remove(chunkPos);
@@ -112,10 +108,10 @@ public class ChunkManager : MonoBehaviour{
 
 public struct TerrainThreadInfo
 {
-    public readonly Action<float[,]> callback;
-    public readonly float[,] calculatedInfo;
+    public readonly Action<float[,,]> callback;
+    public readonly float[,,] calculatedInfo;
 
-    public TerrainThreadInfo(Action<float[,]> callback, float[,] parameter)
+    public TerrainThreadInfo(Action<float[,,]> callback, float[,,] parameter)
     {
         this.callback = callback;
         this.calculatedInfo = parameter;

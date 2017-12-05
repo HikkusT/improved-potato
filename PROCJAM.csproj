@@ -78,19 +78,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Chunk.cs" />
-    <Compile Include="Assets\Scripts\ChunkSettings.cs" />
-    <Compile Include="Assets\Scripts\Enums\DrawMode.cs" />
-    <Compile Include="Assets\Scripts\ExtensionMethods.cs" />
-    <Compile Include="Assets\Scripts\External\FlyCamera.cs" />
-    <Compile Include="Assets\Scripts\Managers\ChunkManager.cs" />
-    <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Managers\LevelManager.cs" />
-    <Compile Include="Assets\Scripts\MapDisplay.cs" />
-    <Compile Include="Assets\Scripts\NoiseGenerator.cs" />
-    <Compile Include="Assets\Scripts\TerrainGenerator.cs" />
-    <Compile Include="Assets\Scripts\TextureGenerator.cs" />
-    <Compile Include="Assets\Scripts\Vector2i.cs" />
+    <Compile Include="Assets\Resources\Scripts\Chunk.cs" />
+    <Compile Include="Assets\Resources\Scripts\ChunkSettings.cs" />
+    <Compile Include="Assets\Resources\Scripts\Enums\Biomes.cs" />
+    <Compile Include="Assets\Resources\Scripts\Enums\DrawMode.cs" />
+    <Compile Include="Assets\Resources\Scripts\ExtensionMethods.cs" />
+    <Compile Include="Assets\Resources\Scripts\External\FlyCamera.cs" />
+    <Compile Include="Assets\Resources\Scripts\Managers\ChunkManager.cs" />
+    <Compile Include="Assets\Resources\Scripts\Managers\GameManager.cs" />
+    <Compile Include="Assets\Resources\Scripts\Managers\LevelManager.cs" />
+    <Compile Include="Assets\Resources\Scripts\MapDisplay.cs" />
+    <Compile Include="Assets\Resources\Scripts\NoiseGenerator.cs" />
+    <Compile Include="Assets\Resources\Scripts\TerrainGenerator.cs" />
+    <Compile Include="Assets\Resources\Scripts\TextureGenerator.cs" />
+    <Compile Include="Assets\Resources\Scripts\Vector2i.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

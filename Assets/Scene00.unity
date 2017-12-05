@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 2068870111}
-  RenderDistance: 6
+  RenderDistance: 5
 --- !u!114 &563962436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,12 +153,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   voxel: {fileID: 1947728258088086, guid: 523e6a8d1d490b64fafb413968ef733b, type: 2}
   ChunkSize: 16
-  ChunkHeight: 20
+  ChunkHeight: 40
   Scale: 64
   Layers: 3
   RateOfAmplitude: 0.5
   RateOfFrequency: 2
   Seed: 0
+  Settings: []
 --- !u!4 &563962437
 Transform:
   m_ObjectHideFlags: 0
@@ -562,7 +563,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2068870111}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 15, z: 0}
+  m_LocalPosition: {x: 5, y: 15, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1456982805}
